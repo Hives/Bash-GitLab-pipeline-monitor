@@ -23,7 +23,7 @@ CONFIG=/home/$XUSER/.config/$SCRIPTNAME
 
 ##############################################################################
 
-source "$SCRIPTDIR/pipeline-monitor.env"
+source "$SCRIPTDIR/.env"
 
 gitlabApiUrl="https://gitlab.com/api/v4"
 
