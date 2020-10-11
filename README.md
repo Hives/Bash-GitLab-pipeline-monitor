@@ -9,7 +9,7 @@
      pipelines you want to monitor
 3. Execute with `./pipeline-monitor`. If the most recent pipeline of any of the
    projects failed, you will get a notification like:
-   > ### The following pipelines are failing:
+   > **The following pipelines are failing:**
    > - my-gitlab-project
    > - another-gitlab-project
 
