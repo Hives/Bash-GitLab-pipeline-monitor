@@ -1,6 +1,9 @@
 #! /usr/bin/env bash
 
-source ./pipeline-monitor.env
+scriptName=$(basename $0)
+scriptDir=$(dirname $(readlink -f $0))
+
+source "$scriptDir/pipeline-monitor.env"
 
 gitlabApiUrl="https://gitlab.com/api/v4"
 
