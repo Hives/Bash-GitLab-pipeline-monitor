@@ -2,16 +2,17 @@
 
 ## Instructions
 
-1. Copy `pipeline-monitor.env.example` to `pipeline-monitor.env`
-2. Edit `pipeline-monitor.env` with your details:
+1. Copy `.env.example` to `.env`
+2. Edit `.env` with your details:
    - you'll need a [GitLab api access token](https://docs.gitlab.com/ee/user/profile/personal_access_tokens.html#creating-a-personal-access-token)
    - change the `projects` array to contain the ids of the GitLab projects whose
-     pipelines you want to monitor
+     pipelines you want to monitor. You can find them under the name of the
+     project on the project's page on the GitLab website.
 3. Execute with `./pipeline-monitor`. If the most recent pipeline of any of the
    projects failed, you will get a notification letting you know.
 
 Obviously don't commit your GitLab access token to this repo. For this reason,
-`pipeline-monitor.env` is protected in `.gitignore`.
+`*.env` is protected in `.gitignore`.
 
 ## Scheduling
 
