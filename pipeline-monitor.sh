@@ -1,0 +1,61 @@
+#! /usr/bin/env bash
+
+source ./config
+
+gitlabApiUrl="https://gitlab.com/api/v4"
+
+function curlGitlab {
+    path="${1}"
+    curl "${gitlabApiUrl}${path}" \
+      -H "Private-Token: ${gitlabApiToken}" \
+      -s
+}
+
+function getPipelines {
+    projectId="${1}"
+    curlGitlab "/projects/${projectId}/pipelines?ref=master&per_page=10"
+}
+
+function getProject {
+    projectId="${1}"
+    curlGitlab "/projects/${projectId}"
+}
+
+function getLastPipelineStatus {
+    projectId="${1}"
+    getPipelines "${projectId}" | jq -r '.[0].status'
+}
+
+function getProjectName {
+    projectId="${1}"
+    getProject "${projectId}" | jq -r '.name'
+}
+
+function notify {
+    message="${1}"
+    notify-send \
+        "The following pipelines are failing:" \
+        "$(echo -e "${message}")" \
+        -u critical
+}
+
+function main {
+    failedPipelines=()
+
+    for project in "${projects[@]}"; do
+        if [ $(getLastPipelineStatus "${project}") == "failed" ]; then
+            failedPipelines+=("${project}")
+        fi
+    done
+
+    if [ ${#failedPipelines[@]} -ne 0 ]; then
+        for project in "${failedPipelines[@]}"; do
+            projectName="$(getProjectName "${project}")"
+            message="${message}• ${projectName}\n"
+        done
+
+        notify "${message}"
+    fi
+}
+
+main
