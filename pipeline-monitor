@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 
-source ./config
+source ./pipeline-monitor.env
 
 gitlabApiUrl="https://gitlab.com/api/v4"
 
