@@ -14,16 +14,19 @@
 Obviously don't commit your GitLab access token to this repo. For this reason,
 `*.env` is protected in `.gitignore`.
 
-## Scheduling
-
-This script can be run as a cron job. E.g. adding this line to your crontab will
-run it every 15 minutes from 9am-6pm, Monday to Friday:
-```
-*/15 9-18 * * 1-5 /full/path/to/pipeline-monitor
-```
-
 ## Dependencies
 
 - `jq`: for parsing json
 - `notify-send`: tool to display desktop notifications. Available in Ubuntu,
   and possibly other Linux distros
+
+## Scheduling
+
+This script can be run as a cron job. E.g. adding this line to your crontab
+(edit your crontab with `crontab -e`) will run it every 15 minutes from 9am-6pm,
+Monday to Friday:
+
+```
+*/15 9-18 * * 1-5 /full/path/to/pipeline-monitor
+```
+
