@@ -32,10 +32,11 @@ function getProjectName {
 }
 
 function notify {
-    message="${1}"
+    summary="${1}"
+    body="${2}"
     notify-send \
-        "The following pipelines are failing:" \
-        "$(echo -e "${message}")" \
+        "${summary}" \
+        "$(echo -e "${body}")" \
         -u critical
 }
 
@@ -51,10 +52,10 @@ function main {
     if [ ${#failedPipelines[@]} -ne 0 ]; then
         for project in "${failedPipelines[@]}"; do
             projectName="$(getProjectName "${project}")"
-            message="${message}• ${projectName}\n"
+            body="${body}• ${projectName}\n"
         done
 
-        notify "${message}"
+        notify "The following pipelines are failing:" "${body}"
     fi
 }
 
