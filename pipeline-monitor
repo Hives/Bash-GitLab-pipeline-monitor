@@ -1,9 +1,29 @@
 #! /usr/bin/env bash
 
-scriptName=$(basename $0)
-scriptDir=$(dirname $(readlink -f $0))
+##############################################################################
+# Standard boilerplate (thanks Ethan Schoonover)
+##############################################################################
 
-source "$scriptDir/pipeline-monitor.env"
+# rerun as X user if running as root
+XUSER=$(ps -C Xorg -C X -ouser=)
+[ "$(id -un)" = root ] && [ "$XUSER" != root ] && exec su -c "$0 $*" "$XUSER"
+
+# grab X user id if necessary
+XUSERID=$(id -u $XUSER)
+
+# key environment variables
+export DISPLAY=":0"
+export XAUTHORITY=$HOME/.Xauthority
+export DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/$XUSERID/bus"
+
+# script values and config file if we need it
+SCRIPTNAME=$(basename $0)
+SCRIPTDIR=$(dirname $(readlink -f $0))
+CONFIG=/home/$XUSER/.config/$SCRIPTNAME
+
+##############################################################################
+
+source "$SCRIPTDIR/pipeline-monitor.env"
 
 gitlabApiUrl="https://gitlab.com/api/v4"
 
