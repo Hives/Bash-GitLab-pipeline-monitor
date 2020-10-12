@@ -1,7 +1,7 @@
 #! /usr/bin/env bash
 
 ##############################################################################
-# Standard boilerplate (thanks Ethan Schoonover)
+# Standard boilerplate (thanks Ethan Schoonover 🙏)
 ##############################################################################
 
 # rerun as X user if running as root
