@@ -17,8 +17,8 @@ Obviously don't commit your GitLab access token to this repo. For this reason,
 ## Dependencies
 
 - `jq`: for parsing json
-- `notify-send`: tool to display desktop notifications. Available in Ubuntu,
-  and possibly other Linux distros
+- `notify-send`: tool to display desktop notifications. Available in Ubuntu
+  (installed by default?), and possibly other Linux distros
 
 ## Scheduling
 
