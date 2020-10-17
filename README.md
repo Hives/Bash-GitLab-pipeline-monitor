@@ -29,4 +29,3 @@ Monday to Friday:
 ```
 */15 9-17 * * 1-5 /full/path/to/pipeline-monitor
 ```
-
