@@ -27,6 +27,6 @@ This script can be run as a cron job. E.g. adding this line to your crontab
 Monday to Friday:
 
 ```
-*/15 9-18 * * 1-5 /full/path/to/pipeline-monitor
+*/15 9-17 * * 1-5 /full/path/to/pipeline-monitor
 ```
 
