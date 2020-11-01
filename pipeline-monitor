@@ -28,35 +28,35 @@ source "$SCRIPTDIR/.env"
 gitlabApiUrl="https://gitlab.com/api/v4"
 
 function curlGitlab {
-    path="${1}"
+    local path="${1}"
     curl "${gitlabApiUrl}${path}" \
       -H "Private-Token: ${gitlabApiToken}" \
       -s
 }
 
 function getPipelines {
-    projectId="${1}"
+    local projectId="${1}"
     curlGitlab "/projects/${projectId}/pipelines?ref=master&per_page=10"
 }
 
 function getProject {
-    projectId="${1}"
+    local projectId="${1}"
     curlGitlab "/projects/${projectId}"
 }
 
 function getLastPipelineStatus {
-    projectId="${1}"
+    local projectId="${1}"
     getPipelines "${projectId}" | jq -r '.[0].status'
 }
 
 function getProjectName {
-    projectId="${1}"
+    local projectId="${1}"
     getProject "${projectId}" | jq -r '.name'
 }
 
 function notify {
-    summary="${1}"
-    body="${2}"
+    local summary="${1}"
+    local body="${2}"
     notify-send \
         "${summary}" \
         "$(echo -e "${body}")" \
